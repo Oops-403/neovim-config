@@ -53,19 +53,19 @@ local set_leader_map = function()
 end
 
 local set_core_configs = function()
-	-- local pack = require('core.pack')
+	local pack = require('core.pack')
 	create_dir()
 	disable_default_plugins()
 	set_leader_map()
-	-- pack.ensure_plugins()
+	pack.ensure_plugins()
 	require('core.options')
 	require('core.mapping')
 	require('keymap')
 	require('core.autocmd')
-	-- pack.load_compile()
+	pack.load_compile()
 
 	-- vim.cmd([[set background=light]])
-	-- vim.cmd([[colorscheme catppuccin]])
+	vim.cmd([[colorscheme catppuccin]])
 end
 
 set_core_configs()
