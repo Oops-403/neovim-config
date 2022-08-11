@@ -1,6 +1,6 @@
 local fn, uv, api = vim.fn, vim.loop, vim.api
 
-local is_mac = require("core.global").is_mac
+local is_linux = require("core.global").is_linux
 local vim_path = require("core.global").vim_path
 local data_dir = require("core.global").data_dir
 
@@ -20,7 +20,7 @@ function Packer:load_plugins()
 		local list = {}
 		local tmp = vim.split(fn.globpath(modules_dir, "*/plugins.lua"), "\n")
 		for _, f in ipairs(tmp) do
-			list[#list + 1] = f:sub(#modules_dir - 6, -1)
+			-- list[#list + 1] = f:sub(#modules_dir - 6, -1)
 		end
 		return list
 	end
@@ -39,7 +39,7 @@ function Packer:load_packer()
 		api.nvim_command("packadd packer.nvim")
 		packer = require("packer")
 	end
-	if not is_mac then
+	if is_linux then
 		packer.init({
 			compile_path = packer_compiled,
 			git = { clone_timeout = 60, default_url_format = "git@github.com:%s" },
