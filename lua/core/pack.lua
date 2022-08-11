@@ -73,11 +73,13 @@ function Packer:load_packer()
 end
 
 function Packer:init_ensure_plugins()
-	local packer_dir = data_dir .. "pack/packer/opt/packer.nvim"
+	-- local packer_dir = data_dir .. "pack/packer/opt/packer.nvim"
+	local packer_dir = data_dir .. "pack/packer/start/packer.nvim"
 	local state = uv.fs_stat(packer_dir)
 	if not state then
-		local cmd = "!git clone git@github.com:wbthomason/packer.nvim.git " .. packer_dir
-		api.nvim_command(cmd)
+		-- local cmd = "!git clone git@github.com:wbthomason/packer.nvim.git " .. packer_dir
+		-- api.nvim_command(cmd)
+		api.nvim_command("!git clone --depth 1 https://github.com/wbthomason/packer.nvim ~/.local/share/nvim/site/pack/packer/start/packer.nvim")
 		uv.fs_mkdir(data_dir .. "lua", 511, function()
 			assert("make compile path dir failed")
 		end)
